@@ -220,3 +220,6 @@ yarn frontend:build
 🌟 App now is ready to be deployed
 
 ### 2. Deployment with heroku
+
+- Create an account on heroku
+- Choose "Create new app" and follow steps
