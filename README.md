@@ -228,4 +228,6 @@ yarn frontend:build
 
   - Deploy Branch
 
+=> _With "yarn frontend:build" will create a new build each time after changed some code before push them to Github_
+
 That's it ! Now it's possible to browse the app URL given by heroku! 🏵 🌟
