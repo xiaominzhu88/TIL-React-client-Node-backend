@@ -217,9 +217,15 @@ yarn frontend:build
 
 => a new directory inside frontend folder "build" appears, remove it from .gitignore file in **frontend** directory
 
-🌟 App now is ready to be deployed
-
 ### 2. Deployment with heroku
 
 - Create an account on heroku
-- Choose "Create new app" and follow steps
+- Choose "Create new app" and follow the steps
+
+  - Choose Github as method, search Repo
+
+  - Enable Automatic Deploys
+
+  - Deploy Branch
+
+That's it ! Now it's possible to browse the app URL given by heroku! 🏵 🌟
