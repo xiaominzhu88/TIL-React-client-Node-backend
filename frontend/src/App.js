@@ -15,7 +15,7 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<h1>Hello from Frontend!</h1>
+			<h1>Hi I'm from Frontend!</h1>
 			<h1>{response.body}</h1>
 		</div>
 	);

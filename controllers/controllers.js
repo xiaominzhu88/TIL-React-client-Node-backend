@@ -2,7 +2,7 @@
 
 const sayHello = (req, res, next) => {
 	res.status(200).json({
-		body: 'Hello I am from the server!',
+		body: 'Hey I am from the server!',
 	});
 };
 
