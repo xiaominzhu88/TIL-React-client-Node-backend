@@ -243,3 +243,5 @@ yarn add body-parser
 
 // in order to read HTTP POST data, use "body-parser" node module, it is a piece of express middleware that reads a form's input and stores it as a javascript object accessible through req.body
 ```
+
+<img src='frontend/public/screenshot.png' height='100px' width='180px' alt='screenshot' />
