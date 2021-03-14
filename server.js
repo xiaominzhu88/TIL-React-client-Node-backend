@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 // Create a new express application named 'app'
 const app = express();
@@ -11,6 +12,14 @@ app.use((req, res, next) => {
 	console.log(`Request_Endpoint: ${req.method} ${req.url}`);
 	next();
 });
+
+// Configure the bodyParser middleware
+app.use(bodyParser.json());
+app.use(
+	bodyParser.urlencoded({
+		extended: true,
+	}),
+);
 
 // Configure the CORs middleware
 app.use(cors());

@@ -1,3 +1,38 @@
 .App {
 	text-align: center;
 }
+section {
+	border: 1px solid red;
+	margin: 10px auto;
+	width: 60%;
+	background-color: azure;
+	padding: 15px;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	margin: 10px auto;
+}
+input {
+	padding: 5px;
+}
+.formButton,
+.resetButton {
+	padding: 5px;
+	cursor: pointer;
+	font-weight: bold;
+	width: 40%;
+}
+
+.formButton {
+	margin: 5px auto;
+	border: 1px solid gray;
+	background-color: rgb(242, 243, 183);
+}
+.resetButton {
+	background-color: cadetblue;
+	color: #fff;
+	border: none;
+	text-transform: uppercase;
+}

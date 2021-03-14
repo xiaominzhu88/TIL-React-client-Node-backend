@@ -29,7 +29,7 @@ success Saved package.json
 
 <hr />
 
-## Get Started ☘️
+## Getting Started ☘️
 
 - Create server.js file inside **Root** directory
 - Create React frontend: "frontend" folder in the **Root** directory which contains react frontend
@@ -129,7 +129,7 @@ app.use('/api/', api);
 node server
 ```
 
-_Navigate to http://localhost:5000/api/sayHello and it should show "Hello I am from the server!"_
+_Navigate to http://localhost:5000/api/sayHello and it should show "Hey I am from the server!"_
 
 ## Call API from React frontend 🎬
 
@@ -148,7 +148,7 @@ yarn frontend
 
 🌤🌤 😳
 
-_Navigate to http://localhost:3000 it shows "Hello from Frontend!" but without any RESPONSE from backend, and inspect that:⬇️ 👀_
+_Navigate to http://localhost:3000 it shows "Hi I'm from Frontend!" but without any RESPONSE from backend, and inspect that:⬇️ 👀_
 
 ```jsx
 createError.js:16 Uncaught (in promise) Error: Request failed with status code 404
@@ -157,7 +157,7 @@ createError.js:16 Uncaught (in promise) Error: Request failed with status code 4
     at XMLHttpRequest.handleLoad (xhr.js:62)
 ```
 
-=> This is because server running at 5000 but frontend port is 3000, we need proxy
+=> This is because server running at 5000 but frontend port is 3000, add proxy
 
 ⏬
 
@@ -170,8 +170,8 @@ Add to package.json in **frontend** folder
 => Restart backend server and frontend server, page should show
 
 ```jsx
-Hello from Frontend!
-Hello I am from the server!
+Hi I'm from Frontend!
+Hey I am from the server!
 ```
 
 ☘️☘️☘️
@@ -201,7 +201,7 @@ yarn add concurrently
 
 ## Deploy to production
 
-### 1. Frontend prepatation
+### 1. Frontend prepatation 👇
 
 - Add script to package.json in **Root** directory
 
@@ -217,7 +217,7 @@ yarn frontend:build
 
 => a new directory inside frontend folder "build" appears, remove it from .gitignore file in **frontend** directory
 
-### 2. Deployment with heroku
+### 2. Deployment with heroku 👇
 
 - Create an account on heroku
 - Choose "Create new app" and follow the steps
@@ -231,3 +231,15 @@ yarn frontend:build
 => _With "yarn frontend:build" will create a new build each time after changed some code before push them to Github_
 
 That's it ! Now it's possible to browse the app URL given by heroku! 🏵 🌟
+
+<hr />
+
+## Additional: 🧚‍♀️
+
+Added form and send input value to server using axios, to avoid empty body error, add "body-parser"
+
+```jsx
+yarn add body-parser
+
+// in order to read HTTP POST data, use "body-parser" node module, it is a piece of express middleware that reads a form's input and stores it as a javascript object accessible through req.body
+```

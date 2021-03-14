@@ -5,5 +5,6 @@ const router = express.Router();
 const controllers = require('../controllers/controllers');
 
 router.get('/sayHello', controllers.sayHello);
+router.post('/sayHello', controllers.sayHello);
 
 module.exports = router;
