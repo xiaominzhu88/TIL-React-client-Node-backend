@@ -17,6 +17,7 @@ const App = () => {
 	const handleChange = (e) => {
 		setValue(e.target.value);
 	};
+
 	const send = async (e) => {
 		e.preventDefault();
 		await axios({

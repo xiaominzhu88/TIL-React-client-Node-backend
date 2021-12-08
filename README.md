@@ -108,22 +108,30 @@ BACK_END_SERVICE_PORT: 5000
 
 ## Frontend and Backend communication 🎬
 
-- Create controllers folder and controllers.js file
+👉 First, create _controllers_ folder and controllers.js file
 
 ✅ _Controller will respond to the frontend with status "200" and a JSON object_
 
-- Create routes folder and routes.js file
+<img src='frontend/public/server-response.png' height='200px' alt='server-response' >
 
-✅ _Create an express router object "router" and a "GET" request route handler to call controller "sayHello"_
+<br />
 
-- Add api in server.js
+👉 Second, create _routes_ folder and routes.js file
+
+✅ _Create an express router object "router" and a "GET" request route handler to call controller "sayHello"_, this will happen wenn the page renders ( useEffect in App.js below )
+
+<img src='frontend/public/get-request.png' height='200px' alt='api-route' >
+
+<br />
+
+👉 Then, add **api** in server.js
 
 ```jsx
 const api = require('./routes/routes');
 app.use('/api/', api);
 ```
 
-- restart backend server
+👉 Now, restart backend server
 
 ```jsx
 node server
@@ -131,22 +139,42 @@ node server
 
 _Navigate to http://localhost:5000/api/sayHello and it should show "Hey I am from the server!"_
 
+<hr />
+
 ## Call API from React frontend 🎬
 
-- Add "axios" inside frontend to make HTTP request from Node.js
+- Add "axios" inside frontend (App.js) to make api request
 
 ```jsx
+// command line
 cd frontend && yarn add axios && cd ..
 ```
 
 - Update App.js file
-- Use axios to make GET request to backend api/sayHello and restart frontend server
+
+- Use axios to make **GET** request to backend api/sayHello and restart frontend server
+
+```jsx
+// import axios in App.js
+import axios from 'axios';
+...
+const [response, setResponse] = useState({});
+
+useEffect(() => {
+	axios.get('/api/sayHello').then((res) => {
+		const response = res.data;
+		setResponse(response);
+	});
+}, []);
+```
+
+- start frontend
 
 ```jsx
 yarn frontend
 ```
 
-🌤🌤 😳
+🌤🌤 😳 ⬇️
 
 _Navigate to http://localhost:3000 it shows "Hi I'm from Frontend!" but without any RESPONSE from backend, and inspect that:⬇️ 👀_
 
@@ -157,11 +185,9 @@ createError.js:16 Uncaught (in promise) Error: Request failed with status code 4
     at XMLHttpRequest.handleLoad (xhr.js:62)
 ```
 
-=> This is because server running at 5000 but frontend port is 3000, add proxy
+=> This is because server running at 5000 but frontend port is 3000, add proxy 💥
 
-⏬
-
-Add to package.json in **frontend** folder
+- Add to package.json in **frontend** folder
 
 ```jsx
 "proxy": "http://localhost:5000"
@@ -171,8 +197,56 @@ Add to package.json in **frontend** folder
 
 ```jsx
 Hi I'm from Frontend!
-Hey I am from the server!
+Hey I am from the server,send me something from frontend: 👆
 ```
+
+<hr />
+
+## Additional Just for fun:: 🧚‍♀️
+
+Add an input field which you can type something and send it to server using axios, to avoid empty body error, add _"body-parser"_
+
+```jsx
+yarn add body-parser
+
+// in order to read HTTP POST data, use "body-parser" node module, it is a piece of express middleware that reads a form's input and stores it as a javascript object accessible through req.body
+```
+
+🦋🦋
+
+```jsx
+const send = async (e) => {
+	e.preventDefault();
+	await axios({
+		method: 'POST',
+		url: '/api/sayHello',
+		data: value,
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Access-Control-Allow-Origin': '*',
+		},
+	})
+		.then((res) => {
+			setBackendValue(res.data.param);
+		})
+		.catch((err) => console.log(err));
+};
+```
+
+React **useState** will update the response and show it on the page
+
+```jsx
+const [backendValue, setBackendValue] = useState('');
+...
+return
+...
+<h1>{backendValue && `Server: You just sent me 👉 ${backendValue}`}</h1>
+...
+```
+
+<img src='frontend/public/post-request.png' height='200px' alt='api-route' >
+
+<hr />
 
 ☘️☘️☘️
 💡 It is also possible to run both server at the same time:
@@ -185,6 +259,7 @@ yarn add concurrently
 
 ```jsx
 ...
+// run both with yarn dev
 "scripts": {
 		"server": "node server.js",
 		"frontend": "cd frontend && yarn start",
@@ -233,15 +308,3 @@ yarn frontend:build
 That's it ! Now it's possible to browse the app URL given by heroku! 🏵 🌟
 
 <hr />
-
-## Additional: 🧚‍♀️
-
-Added form and send input value to server using axios, to avoid empty body error, add "body-parser"
-
-```jsx
-yarn add body-parser
-
-// in order to read HTTP POST data, use "body-parser" node module, it is a piece of express middleware that reads a form's input and stores it as a javascript object accessible through req.body
-```
-
-<img src='frontend/public/screenshot.png' height='100px' width='180px' alt='screenshot' />
